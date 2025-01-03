@@ -143,39 +143,6 @@ st.pyplot(fig)
 st.subheader('Data Count_cr per Musim')
 st.write(grouped_day)
 
-st.subheader("Perbandingan Jumlah Pengguna Casual vs Pengguna Teregistrasi")
-# Data untuk bar chart
-total_casual = 620017
-total_registered = 2672662
-
-# Data untuk bar chart
-data = [total_casual, total_registered]
-labels = ['Casual', 'Registered']
-colors = ["#F26B0F", "#074799"]
-
-# Membuat bar chart
-fig, ax = plt.subplots()
-ax.bar(labels, data, color=colors)
-
-# Menambahkan label dan judul
-ax.set_xlabel('Tipe Pengguna', fontsize=14)
-ax.set_ylabel('Total Rental', fontsize=14)
-ax.set_title('Total Casual vs Registered Rentals', fontsize=16)
-
-# Streamlit: Menampilkan bar chart
-st.pyplot(fig)
-
-# Menampilkan DataFrame yang berisi informasi tentang Total Rentals
-st.subheader('Data Total Rentals per Tipe Pengguna')
-data_dict = {
-    'Tipe Pengguna': ['Casual', 'Registered'],
-    'Total Rental': [total_casual, total_registered]
-}
-total_pengguna_df = pd.DataFrame(data_dict)
-
-# Menampilkan tabel di Streamlit
-st.write(total_pengguna_df)
-
 st.subheader("Pola Penyewaan Sepeda Antara Hari Kerja vs Akhir Pekan")
 
 weekday_data = pd.DataFrame({
