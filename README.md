@@ -1,14 +1,16 @@
 # SubmissionProyekAnalisisData
 
--struktur direktori submission-
-submission
-├───dashboard
-| ├───main_data.csv
-| └───dashboard.py
-├───data
-| ├───data_1.csv
-| └───data_2.csv
-├───notebook.ipynb
-├───README.md
-└───requirements.txt
-└───url.txt
+## File_Structures
+```
+├── dashboard
+│   ├── dashboard.py
+│   └── main_data.csv
+│   └── foto_sepeda.png
+├── data
+│   ├── day.csv
+│   └── hour.csv
+├── README.md
+├── notebook.ipynb
+├── requirements.txt
+│── url.txt
+```
