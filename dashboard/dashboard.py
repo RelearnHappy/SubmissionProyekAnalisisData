@@ -143,61 +143,6 @@ st.pyplot(fig)
 st.subheader('Data Count_cr per Musim')
 st.write(grouped_day)
 
-st.subheader("Penggunaan Sepeda Berdasarkan Waktu Terbanyak dan Tersedikit")
-# Menghitung jumlah penyewaan sepeda per jam
-hour_count = sum_order_items.groupby('hours')['count_cr'].sum().reset_index()
-
-# Mengurutkan berdasarkan penyewa terbanyak dan sedikit
-top_rentals = hour_count.sort_values(by="count_cr", ascending=False).head(5)
-least_rentals = hour_count.sort_values(by="count_cr", ascending=True).head(5)
-
-# Mengatur warna untuk top dan least rentals
-top_colors = ["#D3D3D3", "#D3D3D3", "#074799", "#D3D3D3", "#D3D3D3"]
-least_colors = ["#D3D3D3", "#D3D3D3", "#D3D3D3", "#F26B0F", "#D3D3D3"]
-
-# Membuat plot dengan dua sub-plot
-fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(30, 15))
-
-# Plot untuk jam dengan penyewa terbanyak
-sns.barplot(
-    x="hours",
-    y="count_cr",
-    data=top_rentals,
-    hue="hours",
-    palette=top_colors,
-    ax=ax[0]
-)
-ax[0].set_ylabel("Jumlah Penyewaan Sepeda", fontsize=30)
-ax[0].set_xlabel("Jam Malam (PM)", fontsize=30)
-ax[0].set_title("Jam dengan Penyewa Sepeda Terbanyak", loc="center", fontsize=30)
-ax[0].tick_params(axis='x', labelsize=30)
-ax[0].tick_params(axis='y', labelsize=30)
-ax[0].legend(title="Hour", title_fontsize=20, fontsize=15)
-
-# Plot untuk jam dengan penyewa paling sedikit
-sns.barplot(
-    x="hours",
-    y="count_cr",
-    data=least_rentals,
-    hue="hours",
-    palette=least_colors,
-    ax=ax[1]
-)
-ax[1].set_ylabel("Jumlah Penyewaan Sepeda", fontsize=30)
-ax[1].set_xlabel("Jam Pagi (AM)", fontsize=30)
-ax[1].set_title("Jam dengan Penyewa Sepeda Tersedikit", loc="center", fontsize=30)
-ax[1].invert_xaxis()  
-ax[1].tick_params(axis='x', labelsize=30)
-ax[1].tick_params(axis='y', labelsize=30)
-ax[1].legend(title="Hour", title_fontsize=20, fontsize=15)
-
-# Tampilkan plot menggunakan Streamlit
-st.pyplot(fig)
-
-# Menampilkan tabel hour_count di bawah grafik
-st.subheader('Data Penyewaan Sepeda per Jam')
-st.write(hour_count) 
-
 st.subheader("Perbandingan Jumlah Pengguna Casual vs Pengguna Teregistrasi")
 # Data untuk bar chart
 total_casual = 620017
