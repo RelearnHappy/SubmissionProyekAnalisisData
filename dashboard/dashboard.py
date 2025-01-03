@@ -119,6 +119,25 @@ end_color = np.array([1.0, 0.5, 0.1])    # Orange (RGBA)
 n_colors = len(grouped_day)
 gradient_colors = np.array(generate_gradient_color(start_color, end_color, n_colors)).T
 
+# Visualisasi dengan gradient warna
+fig, ax = plt.subplots(figsize=(15, 6))
+
+# Plotting the bar chart with gradient colors
+sns.barplot(
+    y=grouped_day.index,   
+    x=grouped_day["count_cr"],  
+    palette=gradient_colors,  
+    ax=ax, 
+    order=grouped_day.index  
+)
+
+# Styling axes and title
+ax.set_title("Bar Chart Antar-Musim dengan Gradasi Linear", loc="center", fontsize=22)
+ax.set_ylabel('Season', fontsize=20)
+ax.set_xlabel('Count_cr', fontsize=20)
+ax.tick_params(axis='x', labelsize=20)
+ax.tick_params(axis='y', labelsize=20)
+
 # Create figure
 fig, ax = plt.subplots(figsize=(15, 6))  
 
