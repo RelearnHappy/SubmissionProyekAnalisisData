@@ -1,9 +1,17 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 import streamlit as st
 
 sns.set_style('dark')
+
+# Fungsi untuk menghasilkan gradasi warna
+def generate_gradient_color(start_color, end_color, n_colors):
+    return [
+        np.linspace(start_color[i], end_color[i], n_colors)
+        for i in range(3)
+    ]
 
 def create_daily_recap(df):
     daily_recap = df.groupby(by='dteday').agg({
@@ -87,7 +95,7 @@ cas = total_casual(main_days)
 sum_order_items = sum_order(main_hour)
 season = macem_season(main_hour)
 
-#Melengkapi Dashboard dengan Berbagai Visualisasi Data
+# Melengkapi Dashboard dengan Berbagai Visualisasi Data
 st.title('Bike Sharing :bar_chart:')
 
 st.subheader('Daily Sharing')
@@ -138,32 +146,12 @@ ax.set_xlabel('Count_cr', fontsize=20)
 ax.tick_params(axis='x', labelsize=20)
 ax.tick_params(axis='y', labelsize=20)
 
-# Create figure
-fig, ax = plt.subplots(figsize=(15, 6))  
-
-# Plot bar chart
-sns.barplot(
-    y=grouped_day.index,   
-    x=grouped_day["count_cr"],  
-    palette=colors,  
-    ax=ax, 
-    order=grouped_day.index  
-)
-
-# Set titles and labels
-ax.set_title("Bar Chart Antar-Musim", loc="center", fontsize=22)
-ax.set_ylabel('Season', fontsize=20)
-ax.set_xlabel('Count_cr', fontsize=20)
-
-# Customize tick label size
-ax.tick_params(axis='x', labelsize=20)
-ax.tick_params(axis='y', labelsize=20)
-
 # Display plot
 st.pyplot(fig)
 
 st.subheader('Data Count_cr per Musim')
 st.write(grouped_day)
+
 
 st.subheader("Pola Penyewaan Sepeda Antara Hari Kerja vs Akhir Pekan")
 
