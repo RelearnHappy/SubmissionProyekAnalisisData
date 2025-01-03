@@ -113,8 +113,11 @@ grouped_day = pd.DataFrame({
 # Sorting by values
 grouped_day = grouped_day.sort_values(by="count_cr", ascending=False)
 
-# Define color palette
-colors = sns.color_palette(["#FF7043", "#FFEB3B", "#80D6FF", "#66BB6A"], n_colors=len(grouped_day))
+# Define gradient colors (from purple to orange)
+start_color = np.array([0.4, 0.2, 0.8])  # Purple (RGBA)
+end_color = np.array([1.0, 0.5, 0.1])    # Orange (RGBA)
+n_colors = len(grouped_day)
+gradient_colors = np.array(generate_gradient_color(start_color, end_color, n_colors)).T
 
 # Create figure
 fig, ax = plt.subplots(figsize=(15, 6))  
